@@ -4,8 +4,9 @@ A social media-like application where users communicate using numbers and mathem
 
 ## 🚀 Live Demo
 
-- **Frontend**: [Your-Vercel-Link-Here]
-- **Backend API**: [Your-Render-Link-Here]
+- **Frontend**: [https://ellty-assignment-2.vercel.app/]
+- **Backend API**: [https://ellty-assignment-2-backend.onrender.com/]
+- **Health Check**: [https://ellty-assignment-2-backend.onrender.com/health]
 
 ## 📋 Project Overview
 
