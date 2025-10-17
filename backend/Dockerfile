@@ -13,9 +13,6 @@ RUN npm install
 # Copy all source code
 COPY . .
 
-# Copy .env file
-COPY .env .env
-
 # Tell Docker this app uses port 5000
 EXPOSE 5000
 
