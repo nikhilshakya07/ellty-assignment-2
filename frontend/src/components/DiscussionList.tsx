@@ -3,7 +3,11 @@ import type { Discussion } from '../types';
 import { discussionAPI } from '../services/api';
 import DiscussionTree from './DiscussionTree';
 
-const DiscussionList: React.FC = () => {
+interface DiscussionListProps {
+  isAuthenticated: boolean;
+}
+
+const DiscussionList: React.FC<DiscussionListProps> = ({ isAuthenticated }) => {
   const [discussions, setDiscussions] = useState<Discussion[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -71,6 +75,7 @@ const DiscussionList: React.FC = () => {
           key={discussion.id}
           discussion={discussion}
           onOperationAdded={fetchDiscussions}
+          isAuthenticated={isAuthenticated}
         />
       ))}
     </div>

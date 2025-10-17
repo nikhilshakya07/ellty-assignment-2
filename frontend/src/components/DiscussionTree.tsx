@@ -8,9 +8,10 @@ import { getAvatarColor } from '../utils/avatar';
 interface DiscussionTreeProps {
   discussion: Discussion;
   onOperationAdded: () => void;
+  isAuthenticated: boolean;
 }
 
-const DiscussionTree: React.FC<DiscussionTreeProps> = ({ discussion, onOperationAdded }) => {
+const DiscussionTree: React.FC<DiscussionTreeProps> = ({ discussion, onOperationAdded, isAuthenticated }) => {
   const [showAddOperation, setShowAddOperation] = useState(false);
 
   const handleOperationAdded = () => {
@@ -38,12 +39,14 @@ const DiscussionTree: React.FC<DiscussionTreeProps> = ({ discussion, onOperation
         <div className="text-2xl font-bold text-blue-600 mb-2">
           Starting Number: {discussion.startingNumber}
         </div>
-        <button
-          onClick={() => setShowAddOperation(true)}
-          className="text-blue-600 hover:text-blue-800 underline text-sm font-medium transition-colors"
-        >
-          Reply
-        </button>
+        {isAuthenticated && (
+          <button
+            onClick={() => setShowAddOperation(true)}
+            className="text-blue-600 hover:text-blue-800 underline text-sm font-medium transition-colors"
+          >
+            Reply
+          </button>
+        )}
       </div>
 
       {showAddOperation && (
@@ -65,6 +68,7 @@ const DiscussionTree: React.FC<DiscussionTreeProps> = ({ discussion, onOperation
             operation={operation}
             discussionId={discussion.id}
             onOperationAdded={onOperationAdded}
+            isAuthenticated={isAuthenticated}
           />
         ))}
       </div>

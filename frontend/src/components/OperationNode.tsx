@@ -8,9 +8,10 @@ interface OperationNodeProps {
   operation: Operation;
   discussionId: string;
   onOperationAdded: () => void;
+  isAuthenticated: boolean;
 }
 
-const OperationNode: React.FC<OperationNodeProps> = ({ operation, discussionId, onOperationAdded }) => {
+const OperationNode: React.FC<OperationNodeProps> = ({ operation, discussionId, onOperationAdded, isAuthenticated }) => {
   const [showAddOperation, setShowAddOperation] = useState(false);
 
   const handleOperationAdded = () => {
@@ -38,12 +39,14 @@ const OperationNode: React.FC<OperationNodeProps> = ({ operation, discussionId, 
         <div className="text-base font-semibold text-gray-800">
           {calculateLeftNumber(operation.result, operation.operationType, operation.rightNumber)} {getOperationSymbol(operation.operationType)} {operation.rightNumber} = <span className="text-blue-600 font-bold">{operation.result}</span>
         </div>
-        <button
-          onClick={() => setShowAddOperation(true)}
-          className="text-blue-600 hover:text-blue-800 underline text-sm font-medium transition-colors mt-1"
-        >
-          Reply
-        </button>
+        {isAuthenticated && (
+          <button
+            onClick={() => setShowAddOperation(true)}
+            className="text-blue-600 hover:text-blue-800 underline text-sm font-medium transition-colors mt-1"
+          >
+            Reply
+          </button>
+        )}
       </div>
 
       {showAddOperation && (
@@ -67,6 +70,7 @@ const OperationNode: React.FC<OperationNodeProps> = ({ operation, discussionId, 
               operation={childOperation}
               discussionId={discussionId}
               onOperationAdded={onOperationAdded}
+              isAuthenticated={isAuthenticated}
             />
           ))}
         </div>

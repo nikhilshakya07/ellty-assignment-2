@@ -57,7 +57,7 @@ const HomePage: React.FC<HomePageProps> = ({ isAuthenticated, username, onLogout
         )}
 
         <div key={refreshKey}>
-          <DiscussionList />
+          <DiscussionList isAuthenticated={isAuthenticated} />
         </div>
       </div>
     </div>
